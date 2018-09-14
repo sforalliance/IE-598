@@ -130,14 +130,14 @@ plot.ylabel("Attribute Values")
 plot.show()
 
 #calculate correlations between real-valued attributes
-dataRow2=rocksVMines.iloc[1,0:60]
-dataRow3=rocksVMines.iloc[2,0:60]
-plot.scatter(dataRow2,dataRow3)
+dataCol2=rocksVMines.iloc[0:208,1]
+dataCol3=rocksVMines.iloc[0:208,2]
+plot.scatter(dataCol2,dataCol3)
 plot.xlabel("2nd Attribute")
 plot.ylabel("3rd Attribute")
 plot.show()
-dataRow21=rocksVMines.iloc[20,0:60]
-plot.scatter(dataRow2,dataRow21)
+dataCol21=rocksVMines.iloc[0:208,20]
+plot.scatter(dataCol2,dataCol21)
 plot.xlabel("2nd Attribute")
 plot.ylabel("21st Attribute")
 plot.show()
@@ -151,8 +151,8 @@ for i in range(208):
     else:
         target.append(0.0)
 #plot 35th atrribute
-dataRow=rocksVMines.iloc[0:208,35]
-plot.scatter(dataRow,target)
+dataCol=rocksVMines.iloc[0:208,35]
+plot.scatter(dataCol,target)
 plot.xlabel("Attribute Value")
 plot.ylabel("Target Value")
 plot.show()
@@ -167,28 +167,28 @@ for i in range(208):
     else:
         target.append(0.0+uniform(-0.1,0.1))
     #plot 35th attribute with semi-opaque points
-dataRow=rocksVMines.iloc[0:208,35]
-plot.scatter(dataRow,target,alpha=0.5,s=120)
+dataCol=rocksVMines.iloc[0:208,35]
+plot.scatter(dataCol,target,alpha=0.5,s=120)
 plot.xlabel("Attribute Value")
 plot.ylabel("Target Value")
 plot.show()
 
 #calculate correlation between real-valued attributes
 mean2=0.0;mean3=0.0;mean21=0.0
-numElt=len(dataRow2)
+numElt=len(dataCol2)
 for i in range(numElt):
-    mean2+=dataRow2[i]/numElt
-    mean3+=dataRow3[i]/numElt
-    mean21+=dataRow21[i]/numElt
+    mean2+=dataCol2[i]/numElt
+    mean3+=dataCol3[i]/numElt
+    mean21+=dataCol21[i]/numElt
 var2=0.0;var3=0.0;var21=0.0
 for i in range(numElt):
-    var2+=(dataRow2[i]-mean2)*(dataRow2[i]-mean2)/numElt
-    var3+=(dataRow3[i]-mean3)*(dataRow3[i]-mean3)/numElt
-    var21+=(dataRow21[i]-mean21)*(dataRow21[i]-mean21)/numElt
+    var2+=(dataCol2[i]-mean2)*(dataCol2[i]-mean2)/numElt
+    var3+=(dataCol3[i]-mean3)*(dataCol3[i]-mean3)/numElt
+    var21+=(dataCol21[i]-mean21)*(dataCol21[i]-mean21)/numElt
 corr23=0.0;corr221=0.0
 for i in range(numElt):
-    corr23+=(dataRow2[i]-mean2)*(dataRow3[i]-mean3)/(sqrt(var2*var3)*numElt)
-    corr221+=(dataRow2[i]-mean2)*(dataRow21[i]-mean21)/(sqrt(var2*var21)*numElt)
+    corr23+=(dataCol2[i]-mean2)*(dataCol3[i]-mean3)/(sqrt(var2*var3)*numElt)
+    corr221+=(dataCol2[i]-mean2)*(dataCol21[i]-mean21)/(sqrt(var2*var21)*numElt)
 sys.stdout.write("Correlation between atrribute 2 and 3 \n")
 print(corr23)
 sys.stdout.write(" \n")
